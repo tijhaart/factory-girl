@@ -24,7 +24,7 @@ promise = promise.then(() => del(['dist/*']));
 // Compile source code into a distributable format with Babel
 for (const format of ['es6', 'cjs', 'umd']) {
   promise = promise.then(() => rollup.rollup({
-    entry: 'src/index.js',
+    entry: 'src/index.es6.js',
     external: Object.keys(pkg.dependencies),
     plugins: [babel(Object.assign(pkg.babel, {
       babelrc: false,
@@ -42,7 +42,7 @@ for (const format of ['es6', 'cjs', 'umd']) {
 }
 
 promise = promise.then(() => {
-  browserify('src/index.js', { standalone: 'FactoryGirl' })
+  browserify('src/index.es6.js', { standalone: 'FactoryGirl' })
     .transform('babelify', { presets: ['es2015', 'stage-0'] })
     .bundle()
     .pipe(fs.createWriteStream('dist/browser.js'));

@@ -1,20 +1,20 @@
-import Factory from './Factory';
-import Sequence from './generators/Sequence';
-import Assoc from './generators/Assoc';
-import AssocAttrs from './generators/AssocAttrs';
-import AssocMany from './generators/AssocMany';
-import AssocAttrsMany from './generators/AssocAttrsMany';
-import ChanceGenerator from './generators/ChanceGenerator';
-import OneOf from './generators/OneOf';
-import DefaultAdapter from './adapters/DefaultAdapter';
+const Factory = require('./Factory');
+const Sequence = require('./generators/Sequence');
+const Assoc = require('./generators/Assoc');
+const AssocAttrs = require('./generators/AssocAttrs');
+const AssocMany = require('./generators/AssocMany');
+const AssocAttrsMany = require('./generators/AssocAttrsMany');
+const ChanceGenerator = require('./generators/ChanceGenerator');
+const OneOf = require('./generators/OneOf');
+const DefaultAdapter = require('./adapters/DefaultAdapter');
 
-export default class FactoryGirl {
-  factories = {};
-  options = {};
-  adapters = {};
-  created = new Set();
-
+module.exports = class FactoryGirl {
   constructor(options = {}) {
+    this.factories = {};
+    this.options = {};
+    this.adapters = {};
+    this.created = new Set();
+
     this.assoc = generatorThunk(this, Assoc);
     this.assocMany = generatorThunk(this, AssocMany);
     this.assocBuild = deprecate('assocBuild', 'assocAttrs');
@@ -100,7 +100,7 @@ export default class FactoryGirl {
   }
 
   withOptions(options, merge = false) {
-    this.options = merge ? { ...this.options, ...options } : options;
+    this.options = merge ? Object.assign({}, this.options, options) : options;
   }
 
   getAdapter(factory) {
@@ -146,12 +146,13 @@ export default class FactoryGirl {
     }
     return adapter;
   }
-}
+};
 
-export function generatorThunk(factoryGirl, SomeGenerator) {
+function generatorThunk(factoryGirl, SomeGenerator) {
   const generator = new SomeGenerator(factoryGirl);
   return (...args) => () => generator.generate(...args);
 }
+module.exports.generatorThunk = generatorThunk;
 
 function deprecate(method, see) {
   return () => {

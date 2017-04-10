@@ -1,5 +1,4 @@
-
-export default class Generator {
+module.exports = class Generator {
   constructor(factoryGirl) {
     if (!factoryGirl) {
       throw new Error('No FactoryGirl instance provided');
@@ -14,4 +13,4 @@ export default class Generator {
   getAttribute(name, model, key) {
     return this.factoryGirl.getAdapter(name).get(model, key);
   }
-}
+};

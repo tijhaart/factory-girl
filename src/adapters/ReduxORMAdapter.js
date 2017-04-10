@@ -1,7 +1,7 @@
-import DefaultAdapter from './DefaultAdapter';
+const DefaultAdapter = require('./DefaultAdapter');
 
 /* eslint-disable no-unused-vars */
-export default class ReduxORMAdapter extends DefaultAdapter {
+module.exports = class ReduxORMAdapter extends DefaultAdapter {
   constructor(session) {
     super();
     this.session = session;
@@ -22,4 +22,4 @@ export default class ReduxORMAdapter extends DefaultAdapter {
   async destroy(model, Model) {
     return Promise.resolve(model.delete()).then(() => true);
   }
-}
+};

@@ -1,6 +1,6 @@
 import { attr, Model } from 'redux-orm';
 
-export default class DummyReduxORMModel extends Model {
+module.exports = class DummyReduxORMModel extends Model {
   static get fields() {
     return {
       id: attr(),
@@ -13,4 +13,4 @@ export default class DummyReduxORMModel extends Model {
   static get modelName() {
     return 'DummyReduxORMModel';
   }
-}
+};

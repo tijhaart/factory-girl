@@ -1,15 +1,12 @@
-import FactoryGirl from './FactoryGirl';
+/* eslint-disable */
+const FactoryGirl = require('./FactoryGirl');
 
-export ObjectAdapter from './adapters/ObjectAdapter';
-export BookshelfAdapter from './adapters/BookshelfAdapter';
-export DefaultAdapter from './adapters/DefaultAdapter';
-export MongooseAdapter from './adapters/MongooseAdapter';
-export SequelizeAdapter from './adapters/SequelizeAdapter';
-export ReduxORMAdapter from './adapters/ReduxORMAdapter';
-
-const factory = new FactoryGirl();
-factory.FactoryGirl = FactoryGirl;
-
-export { factory };
-
-export default factory;
+module.exports = Object.assign(new FactoryGirl(), {
+  FactoryGirl: FactoryGirl,
+  ObjectAdapter: require('./adapters/ObjectAdapter'),
+  BookshelfAdapter: require('./adapters/BookshelfAdapter'),
+  DefaultAdapter: require('./adapters/DefaultAdapter'),
+  MongooseAdapter: require('./adapters/MongooseAdapter'),
+  SequelizeAdapter: require('./adapters/SequelizeAdapter'),
+  ReduxORMAdapter: require('./adapters/ReduxORMAdapter'),
+})

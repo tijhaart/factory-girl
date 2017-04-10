@@ -1,7 +1,6 @@
+const Generator = require('./Generator');
 
-import Generator from './Generator';
-
-export default class OneOf extends Generator {
+module.exports = class OneOf extends Generator {
   async generate(possibleValues) {
     if (!Array.isArray(possibleValues)) {
       throw new Error('Expected an array of possible values');
@@ -16,4 +15,4 @@ export default class OneOf extends Generator {
     const value = possibleValues[randomIndex];
     return (typeof value === 'function') ? value() : value;
   }
-}
+};

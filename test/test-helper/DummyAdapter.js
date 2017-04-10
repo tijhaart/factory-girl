@@ -1,3 +1,3 @@
 import DefaultAdapter from '../../src/adapters/DefaultAdapter';
 
-export default class DummyAdapter extends DefaultAdapter {}
+module.exports = class DummyAdapter extends DefaultAdapter {};

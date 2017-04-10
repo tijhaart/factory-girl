@@ -1,9 +1,8 @@
-import DefaultAdapter from './DefaultAdapter';
+const DefaultAdapter = require('./DefaultAdapter');
 
 /* eslint-disable no-unused-vars */
-export default class BookshelfAdapter extends DefaultAdapter {
+module.exports = class BookshelfAdapter extends DefaultAdapter {
   save(doc, Model) {
     return doc.save(null, { method: 'insert' });
   }
-}
-
+};

@@ -1,13 +1,12 @@
+const asyncPopulate = require('./utils/asyncPopulate');
 
-import asyncPopulate from './utils/asyncPopulate';
-
-export default class Factory {
-  name = null;
-  Model = null;
-  initializer = null;
-  options = {};
-
+module.exports = class Factory {
   constructor(Model, initializer, options = {}) {
+    this.name = null;
+    this.Model = null;
+    this.initializer = null;
+    this.options = {};
+
     if (!Model) {
       throw new Error('Invalid Model constructor passed to the factory');
     }
@@ -18,7 +17,7 @@ export default class Factory {
 
     this.Model = Model;
     this.initializer = initializer;
-    this.options = { ...this.options, ...options };
+    this.options = Object.assign({}, this.options, options);
   }
 
   getFactoryAttrs(buildOptions = {}) {
@@ -26,7 +25,7 @@ export default class Factory {
     if (typeof this.initializer === 'function') {
       attrs = this.initializer(buildOptions);
     } else {
-      attrs = { ...this.initializer };
+      attrs = Object.assign({}, this.initializer);
     }
     return Promise.resolve(attrs);
   }
@@ -121,4 +120,4 @@ export default class Factory {
           createdModels
       ));
   }
-}
+};

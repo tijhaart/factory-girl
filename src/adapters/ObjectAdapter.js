@@ -1,7 +1,7 @@
-import DefaultAdapter from './DefaultAdapter';
+const DefaultAdapter = require('./DefaultAdapter');
 
 /* eslint-disable no-unused-vars */
-export default class ObjectAdapter extends DefaultAdapter {
+module.exports = class ObjectAdapter extends DefaultAdapter {
   build(Model, props) {
     const model = new Model;
     this.set(props, model, Model);
@@ -19,4 +19,4 @@ export default class ObjectAdapter extends DefaultAdapter {
   set(props, model, Model) {
     return Object.assign(model, props);
   }
-}
+};

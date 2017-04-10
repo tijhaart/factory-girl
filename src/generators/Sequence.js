@@ -1,17 +1,6 @@
+const Generator = require('./Generator');
 
-import Generator from './Generator';
-
-export default class Sequence extends Generator {
-  static sequences = {};
-
-  static reset(id = null) {
-    if (!id) {
-      Sequence.sequences = {};
-    } else {
-      Sequence.sequences[id] = undefined;
-    }
-  }
-
+class Sequence extends Generator {
   generate(id = null, callback = null) {
     if (typeof id === 'function') {
       callback = id;
@@ -23,6 +12,17 @@ export default class Sequence extends Generator {
     return callback ? callback(next) : next;
   }
 }
+Object.assign(Sequence, {
+  sequences: {},
+  reset(id = null) {
+    if (!id) {
+      Sequence.sequences = {};
+    } else {
+      Sequence.sequences[id] = undefined;
+    }
+  },
+});
+module.exports = Sequence;
 
 function generateId() {
   let id;

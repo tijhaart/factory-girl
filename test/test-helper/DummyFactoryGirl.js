@@ -2,7 +2,7 @@
 import DummyModel from './DummyModel';
 import DummyAdapter from './DummyAdapter';
 
-export default class DummyFactoryGirl {
+module.exports = class DummyFactoryGirl {
 
   async create(/* name, attrs, buildOptions */) {
     return new DummyModel({
@@ -67,4 +67,4 @@ export default class DummyFactoryGirl {
   getAdapter(/* name */) {
     return new DummyAdapter;
   }
-}
+};

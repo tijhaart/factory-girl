@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-export default class DefaultAdapter {
+module.exports = class DefaultAdapter {
   build(Model, props) {
     return new Model(props);
   }
@@ -15,4 +15,4 @@ export default class DefaultAdapter {
   set(props, model, Model) {
     return model.set(props);
   }
-}
+};

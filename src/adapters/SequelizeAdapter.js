@@ -1,8 +1,8 @@
-import DefaultAdapter from './DefaultAdapter';
+const DefaultAdapter = require('./DefaultAdapter');
 
 /* eslint-disable no-unused-vars */
-export default class SequelizeAdapter extends DefaultAdapter {
+module.exports = class SequelizeAdapter extends DefaultAdapter {
   build(Model, props) {
     return Model.build(props);
   }
-}
+};

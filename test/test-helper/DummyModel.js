@@ -1,5 +1,5 @@
 
-export default class DummyModel {
+module.exports = class DummyModel {
   constructor(attrs = {}) {
     this.attrs = {
       name: attrs.name || 'George',
@@ -21,4 +21,4 @@ export default class DummyModel {
   set(attrs) {
     return Object.assign(this.attrs, attrs);
   }
-}
+};

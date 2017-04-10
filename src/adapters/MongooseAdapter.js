@@ -1,8 +1,8 @@
-import DefaultAdapter from './DefaultAdapter';
+const DefaultAdapter = require('./DefaultAdapter');
 
 /* eslint-disable no-unused-vars */
-export default class MongooseAdapter extends DefaultAdapter {
+module.exports = class MongooseAdapter extends DefaultAdapter {
   async destroy(model, Model) {
     return model.remove();
   }
-}
+};
